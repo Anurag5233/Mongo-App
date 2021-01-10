@@ -1,0 +1,8 @@
+ db.student.insertOne(    { id: "1", name: "anurag", location: "Bangalore", clgName:"DrAmbedkar" }  )
+
+ db.student.insertOne(    { id: "2", name: "Satyam", location: "Bangalore", clgName:"MNIT" }  )
+
+ db.student.insertOne(    { id: "3", name: "Arun", location: "Bangalore", clgName:"RV" } )
+
+ db.student.insertOne(    { id: "4", name: "Vivek", location: "Bangalore", clgName:"Sjbit" } } )
+
