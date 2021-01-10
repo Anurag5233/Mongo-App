@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -35,25 +34,25 @@ public class StudentController {
     }
     //creating a get mapping that retrieves the detail of a specific book
     @GetMapping("/student/{studentId}")
-    private ResponseEntity<Student> getBooks(@PathVariable("studentId") int studentId)
+    private ResponseEntity<Student> getBooks(@PathVariable("studentId") String studentId)
     {
         System.out.println("Inside controller getId");
-        Optional<Student> s = ((studentService.getStudentById(studentId)));
+        Student s = ((studentService.getStudentByName(studentId)));
 
-        if (s.isPresent()) {
-            return new ResponseEntity<>(s.get(), HttpStatus.OK);
+        if (s!=null) {
+            return new ResponseEntity<>(s, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     //creating a delete mapping that deletes a specified book
     @DeleteMapping("/student/{studentId}")
-    private ResponseEntity<HttpStatus> deleteBook(@PathVariable("studentId") int studentId)
+    private ResponseEntity<HttpStatus> deleteBook(@PathVariable("studentId") String studentId)
     {
         System.out.println("Inside controller delete");
 
         try {
-            studentService.delete(studentId);
+            studentService.deleteByName(studentId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,10 +69,10 @@ public class StudentController {
     }
     //creating put mapping that updates the book detail
     @PutMapping("/student/{id}")
-    private Student update(@RequestBody Student student,@PathVariable String id) {
+    private ResponseEntity<HttpStatus> update(@RequestBody Student student,@PathVariable String id) {
         System.out.println("Inside controller PutMapping");
         studentService.saveOrUpdate(student);
-        return student;
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 

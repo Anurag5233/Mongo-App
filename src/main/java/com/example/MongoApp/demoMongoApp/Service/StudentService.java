@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -24,9 +23,9 @@ public class StudentService {
     }
 
     //getting a specific record by using the method findById() of CrudRepository
-    public Optional<Student> getStudentById(int id)
+    public Student getStudentByName(String name)
     {
-        return studentRepo.findById(id);
+        return studentRepo.findByName(name);
     }
 
     //saving a specific record by using the method save() of CrudRepository
@@ -36,9 +35,9 @@ public class StudentService {
     }
 
     //deleting a specific record by using the method deleteById() of CrudRepository
-    public void delete(int id)
+    public void deleteByName(String name)
     {
-        studentRepo.deleteById(id);
+        studentRepo.deleteByName(name);
     }
 
     //updating a record
