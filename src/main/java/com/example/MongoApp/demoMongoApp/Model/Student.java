@@ -1,11 +1,13 @@
 package com.example.MongoApp.demoMongoApp.Model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Student1")
 public class Student {
 
 
+    @Id
     int student_id;
     String name;
     String location;
